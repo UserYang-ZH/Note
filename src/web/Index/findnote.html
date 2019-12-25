@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>查找便签</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<script>
+    function findNote() {
+        const Title=document.getElementById("find");
+        const noteTable=document.getElementById("noteTable");
+        if(Title.value.toString().length===0){
+            alert("请输入标题！");
+        }
+        else{
+            $(noteTable).html("");
+            let str = "";
+            const note={};
+            note.Title=Title.value;
+            const array=[];
+            array.push(note);
+            $.ajax({
+                type: "post",
+                url:"web/FindNoteServlet",
+                timeout: 3000,
+                data: {
+                    "findNote":JSON.stringify(array)
+                },
+                success: function (result) {
+                    $.each(result.list, function (i, item) {
+                        str += "<tr><td/" + item.Title + "><td/" + item.CreationTime + "><td/" + item.LaReTime + ">";
+                        str += "<td><a id='showNote" + i + "' class='button button-blue'>查看</a>";
+                        str += "<input type='hidden' id='NoteId" + i + "' value='" + item.NoteId + "'/></td></tr>"
+                    });
+                    $(noteTable).append(str);
+                },
+                error:function () {
+                    alert("查询失败！");
+                }
+            })
+        }
+    }
+    window.onload=function()
+    {
+        const check=document.getElementsByTagName("a");
+        for(let i=0; i<check.length; i++){
+            check[i].onclick=function () {
+                document.getElementById(this.id);
+                const NoteNums=this.id.split("showNote");
+                let NoteNum="";
+                for(let i=0;i<NoteNums.length;i++){
+                    NoteNum+=NoteNums[i];
+                }
+                const NoteID=document.getElementById("NoteId"+NoteNum);
+                const note={};
+                note.NoteId=NoteID.value;
+                const array=[];
+                array.push(note);
+                $.ajax({
+                    type: "post",
+                    url:"web/ShowNoteServlet",
+                    timeout: 3000,
+                    data: {
+                        "findNote":JSON.stringify(array)
+                    },
+                    success:function (data) {
+                        alert(data);
+                    },
+                    error:function () {
+                        alert("载入失败！");
+                    }
+                })
+            }
+        }
+    }
+
+</script>
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li-checked">
+                    <span style="color: #000000; ">查找便签</span>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<form style="border-width:1px;padding-top: 5px">
+    <input type="text" width="20px" id="find" value="按标题查找" style="border-bottom-width:thin;border-left-style: none
+;border-right-style: none;border-top-style: none"/>
+    <input type="button" id="sub" value="查找" class="button button-blue" onclick="findNote()"/>
+</form>
+<hr align="center" width="75%"/>
+<table id="noteTable" width="100%" border="0" style="background-color: white">
+    <tr><td>标题</td>
+        <td>创建时间</td>
+        <td>最后修改时间</td>
+        <td>操作</td></tr>
+</table>
+</body>
+</html>

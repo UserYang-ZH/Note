@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建备忘录</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<script>
+    function sub() {
+        const Title = (document.getElementById("title").value).toString();
+        const year=document.getElementById("year");
+        const mouth=document.getElementById("mouth");
+        const day=document.getElementById("day");
+        const hour=document.getElementById("hour");
+        const reduration=document.getElementById("reduration");
+        const content=document.getElementById("memoval").value;
+        const tit = title.length;
+        if(tit===0){
+            alert("请输入标题！");
+        }
+        else{
+            const Year=year.options[year.selectedIndex].value.toString();
+            const Mouth=mouth.options[mouth.selectedIndex].value.toString();
+            const Day=day.options[day.selectedIndex].value.toString();
+            const Hour=hour.options[hour.selectedIndex].value.toString();
+            const Reduration=reduration.options[reduration.selectedIndex].value.toString();
+            var time=Year+"-"+Mouth+"-"+Day+"&nbsp;"+Hour;
+            const memo={};
+            memo.Title=Title;
+            memo.SetTime=new Date(Date.parse(time.replace(/-/g, "/")));
+            memo.Reduration=new Date(Date.parse(Reduration.replace(/-/g,"/")));
+            memo.content=content;
+            const array=[];
+            array.push(memo);
+            $.ajax({
+                type: "post",
+                url:"web/AddMemoServlet",
+                timeout: 3000,
+                data: {
+                    "addMemo":JSON.stringify(array)
+                },
+                success:function (data) {
+                    alert(data);
+                },
+                error:function () {
+                    alert("添加失败！");
+                }
+            })
+        }
+    }
+    function Delete() {
+        const title = (document.getElementById("title").value).toString();
+        const isdele = window.confirm("是否删除？");
+        if(isdele===true){
+            if(title.length!==0) {
+                const memo = {};
+                memo.title = title;
+                const array = [];
+                array.push(memo);
+                $.ajax({
+                    type: "post",
+                    url: "web/DeleMemoServlet",
+                    timeout: 3000,
+                    data: {
+                        "DeleMemo": JSON.stringify(array)
+                    },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function () {
+                        alert("请求出错");
+                    }
+                })
+            }
+            else{
+                alert("标题为空！");
+            }
+        }
+    }
+</script>
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li-checked">
+                    <span style="color: #000000; ">创建备忘录</span>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<div><table style="line-height: 20px;background-color: white;width: 100%"><tr><td><label for="title">标题：</label><input type="text" id="title" size="30px"></td>
+    <td><label for="year">发生时间：</label><select id="year" size="1"><option value="2019" selected>2019</option>
+    <option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option>
+    <option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option> </select>
+        <label for="mouth">年</label><select id="mouth" size="1"><option value="01" selected>1</option><option value="02">2</option>
+        <option value="03">3</option><option value="04">4</option><option value="05">5</option>
+        <option value="06">6</option><option value="07">7</option><option value="08">8</option>
+        <option value="09">9</option><option value="10">10</option><option value="11">11</option>
+            <option value="12">12</option> </select><label for="day">月</label><select id="day" size="01"><option value="1" selected>1</option>
+        <option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option>
+            <option value="06">6</option><option value="07">7</option><option value="08">8</option>
+            <option value="09">9</option><option value="10">10</option><option value="11">11</option>
+            <option value="12">12</option><option value="13">13</option><option value="14">14</option>
+            <option value="15">15</option><option value="16">16</option><option value="17">17</option>
+            <option value="18">18</option><option value="19">19</option><option value="20">20</option>
+            <option value="21">21</option><option value="22">22</option>
+            <option value="23">23</option><option value="24">24</option><option value="25">25</option>
+            <option value="26">26</option><option value="27">27</option><option value="28">28</option>
+            <option value="29">29</option><option value="30">30</option><option value="31">31</option></select>日
+        <label for="hour">日</label><select id="hour" size="1"><option value="00:00:00" selected>0点</option><option value="01:00:00">1点</option>
+    <option value="02:00:00">2点</option><option value="03:00:00">3点</option><option value="04:00:00">4点</option>
+        <option value="05:00:00">5点</option><option value="06:00:00">6点</option><option value="07:00:00">7点</option>
+        <option value="08:00:00">8点</option><option value="09:00:00">9点</option><option value="10:00:00">10点</option>
+        <option value="11:00:00">11点</option><option value="12:00:00">12点</option>
+        <option value="13:00:00">13点</option><option value="14:00:00">14点</option>
+        <option value="15:00:00">15点</option><option value="16:00:00">16点</option>
+        <option value="17:00:00">17点</option><option value="18:00:00">18点</option>
+        <option value="19:00:00">19点</option><option value="20:00:00">20点</option>
+        <option value="21:00:00">21点</option><option value="22:00:00">22点</option>
+        <option value="23:00:00">23点</option></select></td>
+    <td><label for="reduration">提醒时长：</label><select id="reduration" size="1"><option value="0000-00-00 00:30:00" selected>半个小时</option>
+        <option value="0000-00-00 01:00:00">一个小时</option><option value="0000-00-00 02:00:00">两个小时</option>
+        <option value="0000-00-00 05:00:00">五个小时</option><option value="0000-00-00 12:00:00">十二个小时</option>
+        <option value="0000-00-01 00:00:00">一天</option><option value="0000-00-02 00:00:00">两天</option> </select></td>
+    <td><input type="button" id="sub" value="保存" class="button button-blue" onclick="sub()"/>
+        <input type="button" id="dele" value="删除" class="button button-blue" onclick="Delete()"/></td></tr></table>
+    <textarea id="memoval" cols="100%" rows="100%"></textarea></div>
+</body>
+</html>

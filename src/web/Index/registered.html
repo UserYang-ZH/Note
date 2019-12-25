@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>注册</title>
+<meta name="description" content=""/>
+
+<!--Google font-->
+<link href="https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800" rel="stylesheet">
+
+<!-- Bootstrap CSS / Color Scheme -->
+<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+<!--navigation-->
+<section class="bh-white py-3">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 text-center">
+			<a class="heading-brand text-primary">注册</a>
+		</div>
+	</div>
+</div>
+</section>
+
+<!--hero header-->
+<section class="py-5">
+<div class="container">
+	<div class="row">
+		<div class="col-md-7 my-md-auto">
+			<h1 class="text-center text-md-left">登录网页版便签，随时想到什么记什么，数据直传云端，摆脱设备限制。</h1>
+			<div class="row feature-grid">
+				<div class="col-sm-6">
+					<div class="media">
+						<div class="icon-box">
+							<div class="icon-box-inner">
+								<span data-feather="unlock" width="28" height="28"></span>
+							</div>
+						</div>
+						<div class="media-body">
+							用登录功能来锁住信息，防止隐私泄露
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="media">
+						<div class="icon-box">
+							<div class="icon-box-inner">
+								<span data-feather="briefcase" width="28" height="28"></span>
+							</div>
+						</div>
+						<div class="media-body">
+							出差旅行只要有设备和网络就能用，方便快捷
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="media">
+						<div class="icon-box">
+							<div class="icon-box-inner">
+								<span data-feather="gift" width="28" height="28"></span>
+							</div>
+						</div>
+						<div class="media-body">
+							附加备忘录功能，防止自己遗忘重要的事
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="media">
+						<div class="icon-box">
+							<div class="icon-box-inner">
+								<span data-feather="users" width="28" height="28"></span>
+							</div>
+						</div>
+						<div class="media-body">
+							用户能随时修改自己所创建的一切，自由方便
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5 pl-md-5">
+			<div class="card">
+				<div class="card-body py-md-4">
+					<h2>总之，请先完成注册。</h2>
+					<p class="lead text-muted">一点一滴的时间都不容我们浪费</p>
+					<form method="post" action="web/RegistServlet">
+						<div class="form-group">
+							<input type="text" class="form-control" id="name" placeholder="昵称">
+						</div>
+                        <div class="form-group">
+							<input type="text" class="form-control" id="phone-number" placeholder="电话号码">
+                        </div>
+						<div class="form-group">
+							<input type="email" class="form-control" id="email" placeholder="电子邮件">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="password" placeholder="密码">
+						</div>
+						<button class="btn btn-primary" id="sub">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<!--footer-->
+<footer>
+<div class="container">
+	<div class="row">
+		<div class="col-12 text-center">
+			<ul class="list-inline">
+				<li class="list-inline-item"><a href="index.html">登录</a></li>
+				<li class="list-inline-item"><a href="tellSystem.html">系统介绍</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</footer>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
+    const a = (request.getSession().getAttribute("UserId")).toString();
+    if(!(a.length === 0)){
+        alert("注册失败！");
+    }
+    else{
+        alert("注册成功！");
+    }
+</script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/feather.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

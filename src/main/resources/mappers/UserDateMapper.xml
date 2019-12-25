@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDateDao">
+    <resultMap id="UserDate" type="UserDate">
+        <id property="UserId" column="UserId"/>
+        <result property="RegistTime" column="RegistTime"/>
+        <result property="CreateNote" column="CreateNote"/>
+        <result property="CreateMemo" column="CreateMemo"/>
+        <result property="Duration" column="Duration"/>
+    </resultMap>
+    <insert id="addUserDate" parameterType="UserDate">
+        insert into usagerecord(UserId,RegistTime,Duration) values (#{UserId},#{RegistTime},#{Duration})
+    </insert>
+    <select id="showUserDate" resultType="UserDate" parameterType="java.lang.String">
+        select * from usagerecord where UserId=#{UserId}
+    </select>
+    <update id="changeUserDate" parameterType="UserDate">
+        update usagerecord set CreateNote=#{CreateNote},CreateMemo=#{CreateMemo},Duration=#{Duration} where UserId=#{UserId}
+    </update>
+</mapper>

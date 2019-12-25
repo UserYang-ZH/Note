@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除备忘录</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<script>
+    window.onload=function () {
+        const deleteMemo=document.getElementById("delememo");
+        $(deleteMemo).html("");
+        let str = "";
+        $.ajax({
+            url:"web/AllMemoServlet",
+            method:"post",
+            dataType:"JSON",
+            success:function (result) {
+                $.each(result.list,function (i,item) {
+                    str+="<tr><td/" + item.Title + "><td/"+item.CreationTime+"><td/" + item.SetTime + ">";
+                    str+="<td><input type='checkbox' id='allMemo' value='"+item.MemoId+"'/></td></tr>"
+                });
+                $(deleteMemo).append(str);
+            }
+        })
+    };
+    function all() {
+        const allMemo=document.getElementById("allMemo");
+        if(allMemo!=null) {
+            if (allMemo.checked !== true) {
+                allMemo.checked = true;
+            }
+        }
+    }
+    function forDele() {
+        const allMemo=document.getElementById("allMemo");
+        if(allMemo!=null) {
+            const isDelete = window.confirm("是否删除？");
+            if(isDelete===true){
+                $.each($("input[id='allMemo']"),function () {
+                    if(this.checked){
+                        const array = [];
+                        const memo={};
+                        memo.MemoId=this.value;
+                        array.push(memo);
+                        $.ajax({
+                            type:"post",
+                            url:"web/DeleMemoServlet",
+                            timeout:3000,
+                            data:{
+                                "DeleteMemo":JSON.stringify(array)
+                            },
+                            success: function (data) {
+                                alert(data);
+                            },
+                            error: function () {
+                               alert("请求出错");
+                            }
+                        })
+                    }
+                });
+            }
+        }
+    }
+</script>
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li-checked">
+                    <span style="color: #000000; ">删除备忘录</span>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<table width="100%" id="delememo">
+    <tr><td colspan="4" align="center" style="font-size: 20px">删除备忘录</td> </tr>
+    <tr><td colspan="4"><hr align="center" width="75%"></td></tr>
+    <tr><td>标题</td><td>创建时间</td><td>发生时间</td><td>是否删除</td></tr>
+    <tr><td colspan="4">全选<input type="checkbox" id="all" onclick="all()">
+        <input type="button" id="forDele" value="确定" class="button button-blue" onclick="forDele()"></td> </tr>
+</table>
+</body>
+</html>

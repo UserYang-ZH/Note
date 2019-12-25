@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看便签</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<script>
+    window.onload=function () {
+        let title=document.getElementById("title");
+        let content=document.getElementById("noteval");
+        let noteId=document.getElementById("noteId");
+        let array={};
+        $.ajax({
+            url:"web/ShowNoteServlet",
+            method:"post",
+            dataType:"JSON",
+            success:function (result) {
+                array=result;
+            }
+        });
+        title.value=array.Title;
+        content.value=array.Content;
+        noteId.value=array.NoteId;
+    };
+    function changeNote() {
+        const Title = (document.getElementById("title").value).toString();
+        const content=document.getElementById("noteval").value;
+        const noteId=document.getElementById("noteId").value;
+        const tit = Title.length;
+        if(tit===0){
+            alert("未输入标题！");
+        }
+        else{
+            const note={};
+            note.NoteId=noteId;
+            note.Title=Title;
+            note.Content=content;
+            const array=[];
+            array.push(note);
+            $.ajax({
+                type: "post",
+                url:"web/ChangeNoteServlet",
+                timeout: 3000,
+                data: {
+                    "ChangeNote":JSON.stringify(array)
+                },
+                success:function (data) {
+                    alert(data);
+                },
+                error:function () {
+                    alert("修改失败！");
+                }
+            })
+        }
+    }
+    function Delete() {
+        const noteId=document.getElementById("noteId").value;
+        const isdele = window.confirm("是否删除？");
+        if(isdele===true){
+            const note = {};
+            note.NoteId=noteId;
+            const array = [];
+            array.push(note);
+            $.ajax({
+                type:"post",
+                url:"web/DeleNoteServlet",
+                timeout:3000,
+                data:{
+                    "DeleteNote":JSON.stringify(array)
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("请求出错");
+                }
+            })
+        }
+    }
+</script>
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<div><ul style="line-height: 20px;background-color: white"><li>标题：<input type="text" id="title" size="30px">
+    <input type="button" id="sub" value="保存" class="button button-blue" onclick="changeNote()"/>
+    <input type="button" id="dele" value="删除" class="button button-blue" onclick="Delete()"/>
+    <input type="hidden" id="noteId" value=""/> </li></ul>
+    <textarea id="noteval" cols="100%" rows="100%"></textarea></div>
+</body>
+</html>

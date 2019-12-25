@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改字体颜色</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li-checked">
+                    <span style="color: #000000; ">修改字体颜色</span>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<div><form>
+    <h2 align="center" style="font-size:30px">修改字体颜色</h2>
+    <hr align="center" width="75%"/><br/>
+    <span>注意：字体颜色无法与背景颜色相同</span><br/><br/><br/>
+    <span>字体颜色：</span>
+    <input type="button" id="colorblack" value="黑" class="button button-black" onclick="black()"/>
+    <input type="button" id="colorbrown" value="棕色" class="button button-brown" onclick="brown()"/>
+    <input type="button" id="colorblue" value="蓝" class="button button-blue" onclick="blue()"/>
+    <input type="button" id="colorred" value="红" class="button button-red" onclick="red()"/>
+    <input type="button" id="colorwhite" value="白" class="button button-silver" onclick="white()"/>
+    <input type="button" id="colororange" value="橘黄" class="button button-orange" onclick="orange()"/>
+    <input type="button" id="colorgreen" value="绿" class="button button-green" onclick="green()"/>
+    <input type="button" id="colorpurple" value="紫" class="button button-purple" onclick="purple()"/><br/><br/>
+    <input type="submit" id="sub" value="确认" class="button button-blue" onclick="changeDB()"/>
+</form></div>
+<script>
+    function black() {
+        const font=document.getElementsByTagName("font");
+        font.style.color="black";
+    }
+    function brown() {
+        const font=document.getElementsByTagName("font");
+        font.style.color="brown";
+    }
+    function blue() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="blue"){
+            alert("背景颜色为蓝色！");
+        }
+        else{
+            font.style.color="blue";
+        }
+    }
+    function red() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="red"){
+            alert("背景颜色为红色！");
+        }
+        else{
+            font.style.color="red";
+        }
+    }
+    function white() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="white"){
+            alert("背景颜色为白色！");
+        }
+        else{
+            font.style.color="white";
+        }
+    }
+    function orange() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="orange"){
+            alert("背景颜色为橘黄色！");
+        }
+        else{
+            font.style.color="orange";
+        }
+    }
+    function green() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="green"){
+            alert("背景颜色为绿色！");
+        }
+        else{
+            font.style.color="green";
+        }
+    }
+    function purple() {
+        const font=document.getElementsByTagName("font");
+        const body=document.getElementsByTagName("body");
+        if(body.style.backgroundColor==="purple"){
+            alert("背景颜色为紫色！");
+        }
+        else{
+            font.style.color="purple";
+        }
+    }
+    function changeDB() {
+        const font=document.getElementsByTagName("font");
+        const color={};
+        color.FontColor=font.style.color;
+        const array=[];
+        array.push(color);
+        $.ajax({
+            type: "post",
+            url:"web/ChangeFCServlet",
+            timeout: 3000,
+            data: {
+                "changeFC":JSON.stringify(array)
+            },
+            success:function (data) {
+                alert(data);
+            },
+            error:function () {
+                alert("修改失败！");
+            }
+        })
+    }
+</script>
+</body>
+</html>

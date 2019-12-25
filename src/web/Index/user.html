@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账号管理</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<script>
+    function ischange() {
+        const pwd=document.getElementById("oldpwd");
+        pwd.disabled=false;
+    }
+    function nochange() {
+        const pwd=document.getElementById("oldpwd");
+        pwd.disabled=true;
+    }
+</script>
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+
+                <div class="index-nav-frame-line-li">
+                    <a href="changebgcolor.html"><span style="color: #000000; ">修改背景颜色</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">查看账号信息</span>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+<table width="100%" style="line-height: 30px;">
+    <tr><td colspan="2"><h2 align="center" style="font-size: 30px">账户</h2></td></tr>
+    <tr><td colspan="2"><hr width="75%" align="center"/></td></tr>
+    <tr style="font-size: 20px"><td><label for="showID">ID：</label><input type="text" id="showID" style="border-left-width:0;border-right-width:0;
+    border-top-width:0;border-bottom-width: thin" disabled="disabled"></td>
+        <td><label for="showname">用户名：</label><input type="text" id="showname" style="border-left-width:0;border-right-width:0;
+    border-top-width:0;border-bottom-width: thin"></td></tr>
+    <tr style="font-size: 20px"><td><label for="showemail">电子邮箱：</label><input type="text" id="showemail" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0"></td>
+        <td><label for="shownumber">电话：</label><input type="text" id="shownumber" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0"></td></tr>
+    <tr style="font-size: 20px"><td><label for="showcreatenote">便签创建数：</label>
+        <input type="text" id="showcreatenote" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0" disabled="disabled"></td>
+    <td><label for="showcreatememo">备忘录创建数：</label>
+        <input type="text" id="showcreatememo" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0" disabled="disabled"></td></tr>
+    <tr><td colspan="2"><hr width="75%" align="center"/></td></tr>
+    <tr style="font-size: 20px"><td>修改登陆密码：</td><td>
+        <input type="radio" name="changepwd" onclick="ischange()">是
+    <input type="radio" name="changepwd" checked onclick="nochange()">否</td></tr>
+        <tr><td><input type="text" id="oldpwd" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0" placeholder="请输入旧密码" disabled="disabled"/>
+        <input type="button" id="textpwd" value="确定" class="button button-blue"></td>
+    <td><input type="text" id="newpwd" style="border-bottom-width: thin;border-top-width: 0;
+border-right-width: 0;border-left-width: 0" placeholder="请输入新密码" disabled="disabled">
+        <input type="button" id="pwd" value="确定修改" class="button button-blue"></td></tr>
+</table>
+    <input type="button" id="sub" value="保存" class="button button-blue"/>
+</body>
+</html>

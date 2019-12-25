@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ColorDao">
+    <resultMap id="color" type="color">
+        <id property="UserId" column="UserId"/>
+        <result property="BGColor" column="BGcolor"/>
+        <result property="FontColor" column="FontColor"/>
+        <result property="SetTime" column="SetTime"/>
+        <result property="IsRandom" column="IsRandom"/>
+    </resultMap>
+    <insert id="addColor" parameterType="color">
+        insert into bfcolor values(#{UserId},#{BGColor},#{FontColor},#{SetTime},#{IsRandom})
+    </insert>
+    <select id="showColor" resultType="color" parameterType="java.lang.String">
+        select * from bfcolor where UserId=#{UserId}
+    </select>
+    <update id="changeColor" parameterType="color">
+        update bfcolor set BGcolor=#{BGColor},FontColor=#{FontColor},SetTime=#{SetTime},IsRandom=#{IsRandom} where UserId=#{UserId}
+    </update>
+</mapper>

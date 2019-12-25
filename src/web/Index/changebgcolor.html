@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改背景颜色</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/color.css" type="text/css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+<div class="index-nav">
+    <div class="index-nav-frame clearfix">
+        <div class="nav-line">
+        </div>
+        <div class="nav-small" tabindex="-1">
+            <div class="nav-small-focus" tabindex="-1">
+            </div>
+            <img src="img/icon.png" alt="菜单">
+        </div>
+        <div class="index-nav-frame-line active" tabindex="-1">
+            <a href="home.html"><span style="color: #000000; ">首页</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">便签</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addnote.html"><span style="color: #000000; ">创建便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allnote.html"><span style="color: #000000; ">查看所有便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delenote.html"><span style="color: #000000; ">删除便签</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findnote.html"><span style="color: #000000; ">查找便签</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: #000000; ">备忘录</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li">
+                    <a href="addmemo.html"><span style="color: #000000; ">创建备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="allmemo.html"><span style="color: #000000; ">查看所有备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="findmemo.html"><span style="color: #000000; ">查找备忘录</span></a>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="delememo.html"><span style="color: #000000; ">删除备忘录</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <span style="color: red; ">系统设置</span>
+            <div class="index-nav-frame-line-center">
+                <div class="index-nav-frame-line-li-checked">
+                    <span style="color: #000000; ">修改背景颜色</span>
+                </div>
+                <div class="index-nav-frame-line-li">
+                    <a href="changefontcolor.html"><span style="color: #000000; ">修改字体颜色</span></a>
+                </div>
+            </div>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+        <div class="index-nav-frame-line" tabindex="-1">
+            <a href="user.html"><span style="color: #000000; ">查看账号信息</span></a>
+            <div class="index-nav-frame-line-focus" tabindex="-1"></div>
+        </div>
+    </div>
+</div>
+ <div>
+     <h2 align="center" style="font-size:30px">修改背景颜色</h2>
+     <hr align="center" width="75%"/>
+     <span>是否随机？<input type="radio" name="random" value="true" onclick="random()">是
+         <input type="radio" name="random" value="false" checked>否</span>
+     <br/><br/>
+     <span>注意：字体颜色无法与背景颜色相同</span><br/><br/>
+     <span>背景颜色：</span><input type="button" id="colorBlue" value="蓝" class="button button-blue" onclick="blue()"/>
+     <input type="button" id="colorRed" value="红" class="button button-red" onclick="red()"/>
+     <input type="button" id="colorWhite" value="白" class="button button-silver" onclick="white()"/>
+     <input type="button" id="colorOrange" value="橘黄" class="button button-orange" onclick="orange()"/>
+     <input type="button" id="colorGreen" value="绿" class="button button-green" onclick="green()"/>
+     <input type="button" id="colorPurple" value="紫" class="button button-purple" onclick="purple()"/><br/><br/>
+     <input type="button" id="sub" value="确认" class="button button-blue" onclick="changeDB()"/>
+ </div>
+<script>
+    function random() {
+        const math1 = (Math.random()) * 6;
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        const random=document.getElementsByName("random");
+        if(random.value===true){
+            if(math1>0&&math1<=1){
+                body.style.backgroundColor="blue";
+            }
+            else if(math1>1&&math1<=2){
+                body.style.backgroundColor="red";
+            }
+            else if(math1>2&&math1<=3){
+                body.style.backgroundColor="white";
+            }
+            else if(math1>3&&math1<=4){
+                body.style.backgroundColor="orange";
+            }
+            else if(math1>4&&math1<=5){
+                body.style.backgroundColor="green";
+            }
+            else{
+                body.style.backgroundColor="purple";
+            }
+        }
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function blue() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="blue";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function red() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="red";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function white() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="white";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function orange() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="orange";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function green() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="green";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function purple() {
+        const body=document.getElementsByTagName("body");
+        const font=document.getElementsByTagName("font");
+        body.style.backgroundColor="purple";
+        if(body.style.backgroundColor===font.style.color){
+            font.style.color="black";
+        }
+    }
+    function changeDB() {
+        const body=document.getElementsByTagName("body");
+        const color={};
+        color.BGColor=body.style.backgroundColor;
+        const array=[];
+        array.push(color);
+        $.ajax({
+            type: "post",
+            url:"web/ChangeBGCServlet",
+            timeout: 3000,
+            data: {
+                "changeBGC":JSON.stringify(array)
+            },
+            success:function (data) {
+                alert(data);
+            },
+            error:function () {
+                alert("修改失败！");
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.NoteDao">
+    <resultMap id="note" type="note">
+        <id property="NoteId" column="NoteId"/>
+        <result property="Title" column="Title"/>
+        <result property="CreationTime" column="Creationtime"/>
+        <result property="Content" column="Content"/>
+        <result property="WordCount" column="Wordcount"/>
+        <result property="LaReTime" column="LaReTime"/>
+    </resultMap>
+    <insert id="addNote" parameterType="note">
+        insert into note values(#{NoteId},#{Title},#{CreationTime},#{Content},#{WordCount},#{LaReTime})
+    </insert>
+    <delete id="deleNote" parameterType="java.lang.String">
+        delete from note where NoteId=#{NoteId}
+    </delete>
+    <select id="findNoteByTit" parameterType="java.lang.String" resultMap="note">
+        select * from note where Title=#{Title}
+    </select>
+    <select id="findNoteById" parameterType="java.lang.String" resultMap="note">
+        select * from note where NoteId=#{NoteId}
+    </select>
+    <select id="allNote" resultMap="note">
+        select * from note order by LaReTime
+    </select>
+    <update id="changeNote" parameterType="note">
+        update note set Title=#{Title},Content=#{Content},Wordcount=#{WordCount},LaReTime=#{LaReTime} where NoteId=#{NoteId}
+    </update>
+</mapper>

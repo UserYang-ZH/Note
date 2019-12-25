@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDao">
+    <resultMap id="user" type="user">
+        <id property="UserId" column="UserId"/>
+        <result property="UserName" column="Username"/>
+        <result property="Email" column="email"/>
+        <result property="phNumber" column="phnumber"/>
+        <result property="pwd" column="pwd"/>
+    </resultMap>
+    <insert id="addUser" parameterType="user">
+        insert into user values(#{UserId},#{UserName},#{Email},#{phNumber},#{pwd})
+    </insert>
+    <select id="findUser" parameterType="java.lang.String" resultMap="user">
+        select * from user where Username=#{UserName}
+    </select>
+    <select id="allUser" resultMap="user">
+        select * from user
+    </select>
+    <update id="changeUser" parameterType="user">
+        update user set Username=#{UserName},email=#{Email},phnumber=#{phNumber},pwd=#{pwd} where UserId=#{UserId}
+    </update>
+</mapper>
